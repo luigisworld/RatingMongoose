@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html ng-app="picture">
+	<head>
+		<meta charset="utf-8">
+		
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<script src="js/controller.js"></script>
+		
+
+	</head>
+	<body ng-controller="pictureCtrl">
+		<div class="container">
+			<h2><span class="glyphicon glyphicon-star"></span> Best bass ever</h2>
+			<hr>
+			<div class="row">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="picture in pictures | orderBy: '-pointsByIP[0]'">
+					<img ng-src="img/{{picture.img}}"/><br>
+					<button type="button" class="btn btn-link btn-lg" ng-class="{'disabled': picture.pointsByIP[1]==1}" ng-click="like(picture)">
+						<span class="glyphicon" ng-class="{'glyphicon-star-empty': picture.pointsByIP[1]==0, 'glyphicon-star': picture.pointsByIP[1]==1}">{{picture.pointsByIP[0]}}</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
